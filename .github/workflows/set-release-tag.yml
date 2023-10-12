@@ -16,7 +16,7 @@ jobs:
       - name: Get branch date
         id: get_branch_date
         run: echo "branch_name=$(echo ${{ github.event.pull_request.head.ref }} | cut -d'/' -f2)"  >> $GITHUB_ENV
-         - name: Check if tag exists
+      - name: Check if tag exists
         id: check_tag
         run: echo "tag_exists=$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}*) >> $GITHUB_ENV"
       - name: Determine new tag name
