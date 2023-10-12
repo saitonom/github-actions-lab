@@ -11,7 +11,7 @@ jobs:
   build:
     name: Create Release
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && contains(github.event.pull_request.head.ref, 'release')
+    if: github.event.pull_request.merged == true 
     steps:
       - name: Get branch date
         id: get_branch_date
