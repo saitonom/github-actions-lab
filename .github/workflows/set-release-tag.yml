@@ -16,21 +16,21 @@ jobs:
       - name: Get branch date
         id: get_branch_date
         run: echo "branch_name=$(echo ${{ github.event.pull_request.head.ref }} | cut -d'/' -f2)"  >> $GITHUB_ENV
-      - name: Check if tag exists
-        id: check_tag
-        run: echo "::set-output name=tag_exists::$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}*)"
-      - name: Determine new tag name
-        id: new_tag_name
-        run: |
-          if [ -n "${{ steps.check_tag.outputs.tag_exists }}" ]; then
-            counter=1
-            while [ -n "$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}-${{ counter }}*)" ]; do
-              counter=$((counter + 1))
-            done
-            echo "::set-output name=new_tag_name::${{ env.branch_name }}-${{ counter }}"
-          else
-            echo "::set-output name=new_tag_name::${{ env.branch_name }}"
-          fi
+      # - name: Check if tag exists
+      #   id: check_tag
+      #   run: echo "::set-output name=tag_exists::$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}*)"
+      # - name: Determine new tag name
+      #   id: new_tag_name
+      #   run: |
+      #     if [ -n "${{ steps.check_tag.outputs.tag_exists }}" ]; then
+      #       counter=1
+      #       while [ -n "$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}-${{ counter }}*)" ]; do
+      #         counter=$((counter + 1))
+      #       done
+      #       echo "::set-output name=new_tag_name::${{ env.branch_name }}-${{ counter }}"
+      #     else
+      #       echo "::set-output name=new_tag_name::${{ env.branch_name }}"
+      #     fi
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
