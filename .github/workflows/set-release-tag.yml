@@ -24,7 +24,7 @@ jobs:
       
       - name: Check if tag exists
         id: check_tag
-        run: echo "tag_exists=$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}*)" >> $GITHUB_ENV"
+        run: echo "tag_exists=$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}*)" >> $GITHUB_ENV
         
       - name: Determine new tag name
         id: new_tag_name
