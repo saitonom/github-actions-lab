@@ -3,7 +3,7 @@ name: Set Release Tag
 on:
   pull_request:
     branches:
-      - master
+      - main
     types: 
       - closed
 # test コメント
