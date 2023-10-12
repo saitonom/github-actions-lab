@@ -24,12 +24,14 @@ jobs:
       
       - name: Check if tag exists
         id: check_tag
-        run: echo "tag_exists=$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}*)" >> $GITHUB_ENV
-        
+        run: echo "TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: echo tag name
+        run: |
+          echo "${TAG_NAME}"
       - name: Determine new tag name
         id: new_tag_name
         run: |
-          if [ -n "$tag_exists" ]; then
+          if [ -n "${{ TAG_NAME }}" ]; then
             counter=1
             while [ -n "$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}-${counter}*)" ]; do
               counter=$((counter + 1))
