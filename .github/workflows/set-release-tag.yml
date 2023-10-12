@@ -6,7 +6,7 @@ on:
       - main
     types: 
       - closed
-# test コメント
+
 jobs:
   build:
     name: Create Release
