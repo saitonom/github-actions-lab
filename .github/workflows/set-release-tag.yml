@@ -34,8 +34,10 @@ jobs:
             while [ -n "$(git ls-remote --tags origin refs/tags/${{ env.branch_name }}-${counter}*)" ]; do
               counter=$((counter + 1))
             done
+            echo "new_tag_name=${{ env.branch_name }}-${counter}"
             echo "new_tag_name=${{ env.branch_name }}-${counter}" >> $GITHUB_ENV
           else
+            echo "new_tag_name=${{ env.branch_name }}"
             echo "new_tag_name=${{ env.branch_name }}" >> $GITHUB_ENV
           fi
           
