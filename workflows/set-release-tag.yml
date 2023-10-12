@@ -16,6 +16,7 @@ jobs:
       - name: Get branch date
         id: get_branch_date
         run: echo "branch_name=$(echo ${{ github.event.pull_request.head.ref }} | cut -d'/' -f2)"  >> $GITHUB_ENV
+      
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
